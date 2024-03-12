@@ -3,13 +3,9 @@ import React, { useEffect, useRef } from "react";
 
 type HeaderLinksMenuMobile = {
    menuToggle: boolean;
-   setMenuToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function HeaderLinksMenuMobile({
-   menuToggle,
-   setMenuToggle,
-}: HeaderLinksMenuMobile) {
+function HeaderLinksMenuMobile({ menuToggle } : HeaderLinksMenuMobile) {
    const refmenu = useRef<HTMLUListElement>(null);
    const refContainermenu = useRef<HTMLDivElement>(null);
    useEffect(() => {
@@ -30,10 +26,7 @@ function HeaderLinksMenuMobile({
          }`}
          ref={refContainermenu}
       >
-         <ul
-            className={`HeaderMobileLinks inline-block`}
-            ref={refmenu}
-         >
+         <ul className={`HeaderMobileLinks inline-block`} ref={refmenu}>
             <li className="links">
                <Link className="" href={""}>
                   درباره آریانا آپاتایت

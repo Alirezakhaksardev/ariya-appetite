@@ -24,7 +24,7 @@ function Header() {
                <AccountButton/>
             </div>
          </div>
-         <HeaderLinksMenuMobile menuToggle={menuToggle} setMenuToggle ={setMenuToggle} />
+         <HeaderLinksMenuMobile menuToggle={menuToggle} />
       </header>
    );
 }
