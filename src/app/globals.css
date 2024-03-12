@@ -2,9 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
-  .text-balance {
+   /* .text-balance {
     text-wrap: balance;
-  }
+  } */
+}
+
+@layer compnents {
+   .headerAppetiteContainer , .footerAppetiteContainer {
+      @apply w-full min-h-16 bg-slate-100 dark:bg-zinc-800 flex flex-col items-center px-10;
+   }
+   .headerAppetiteContainer div.AppetiteContainer , .footerAppetiteContainer div.AppetiteContainer {
+      @apply container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 py-5 justify-between items-center;
+   }
+   .links {
+      @apply transition-all ease-in hover:text-stone-600 dark:hover:text-stone-300 text-stone-400;
+   }
+
+   .HeaderLinks {
+      @apply hidden lg:flex flex-row gap-5;
+   }
+   .HeaderLinks .links {
+      @apply mx-0;
+   }
+   .HeaderMobileLinks {
+      @apply transition-all ease-in w-full mx-auto bg-slate-100 dark:bg-zinc-800 inline-block
+   }
+   .HeaderMobileLinks .links{
+      @apply text-stone-600 dark:text-stone-300
+   }
+   .HeaderMobileLinks .links a{
+      @apply transition-all ease-in bg-zinc-200 dark:bg-zinc-700 active:bg-zinc-300 dark:active:bg-zinc-800 w-full block my-1 py-2 text-center rounded-md
+   }
+   .iconColor {
+      @apply text-zinc-700 dark:text-zinc-200;
+   }
+   .iconColorMood {
+      @apply text-zinc-500 dark:text-orange-400;
+   }
+   .heartIcon{
+    @apply text-red-400
+   }
 }
