@@ -17,6 +17,7 @@
    .footerAppetiteContainer div.AppetiteContainer {
       @apply container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 py-5 justify-between items-center;
    }
+
    .links {
       @apply transition-all ease-in hover:text-stone-600 dark:hover:text-stone-300 text-stone-400;
    }
