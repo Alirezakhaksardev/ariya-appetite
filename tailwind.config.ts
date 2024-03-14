@@ -23,7 +23,7 @@ const config: Config = {
          themes: {
             light: {
                colors: {
-                  background: "#fafafa", // or DEFAULT
+                  background: "#f4f4f5", // or DEFAULT
                },
             },
             dark: {

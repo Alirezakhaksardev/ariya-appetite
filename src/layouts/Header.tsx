@@ -11,7 +11,7 @@ function Header() {
    const [menuToggle , setMenuToggle] = useState(false)
 
    return (
-      <header className="headerAppetiteContainer">
+      <header className="headerAppetiteContainer shadow-md">
          <div className="AppetiteContainer">
             <div className="flex flex-row items-center">
                <ShowLogo title="آریانا آپتایت" srcImage="/images/logo.png" />
