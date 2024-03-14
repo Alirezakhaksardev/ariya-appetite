@@ -9,7 +9,6 @@ const campanySchema = new Schema({
    },
    phone: {
       type: String,
-      required: true,
    },
    fullName: {
       type: String,

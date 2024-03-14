@@ -1,7 +1,13 @@
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 function ButtonRegisterForm() {
+   const router = useRouter();
+   const goToLoginPage = () => {
+      router.push("/signin", { scroll: false });
+   };
    return (
       <div className="my-2 flex flex-col gap-3">
          <Button
@@ -9,23 +15,28 @@ function ButtonRegisterForm() {
             variant="flat"
             radius={"sm"}
             aria-label="signin"
-            className="w-full"
+            className="w-full font-bold"
             type="submit"
          >
             ثبت نام
          </Button>
          <div className="flex flex-col gap-3">
             <p className="text-zinc-500">آیا قبلا ثبت نام کرده اید؟</p>
-            <Button
-            color="default"
-            variant="ghost"
-            radius={"sm"}
-            aria-label="ToLogin"
-            className="w-full"
-            type="button"
-         >
-            برو به صفحه ورود
-         </Button>
+            <div className="w-full">
+               <Link href={'/signin'} scroll={false}>
+                  <Button
+                     color="default"
+                     variant="ghost"
+                     radius={"sm"}
+                     aria-label="ToLogin"
+                     className="w-full"
+                     type="button"
+                     onClick={goToLoginPage}
+                  >
+                     برو به صفحه ورود
+                  </Button>
+               </Link>
+            </div>
          </div>
       </div>
    );

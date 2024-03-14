@@ -9,17 +9,17 @@ interface InputGroup {
    value: string;
    handleChange: {
       (e: React.ChangeEvent<any>): void;
-      <T_1 = string | React.ChangeEvent<SignUpData>>(
+      <T_1 = string | React.ChangeEvent<any>>(
          field: T_1
-      ): T_1 extends React.ChangeEvent<SignUpData>
+      ): T_1 extends React.ChangeEvent<any>
          ? void
-         : (e: string | React.ChangeEvent<SignUpData>) => void;
+         : (e: string | React.ChangeEvent<any>) => void;
    };
    touched?: boolean | undefined;
    errors?: string | undefined;
    autoFocus?: boolean | undefined;
    label: string;
-   type: "text" | "email" | "password";
+   type: "text" | "email" | "password" | "passwordSignUP";
 }
 
 function InputGroup({
@@ -33,8 +33,49 @@ function InputGroup({
    autoFocus = false,
 }: InputGroup) {
 
+   if(type == "password"){
+      const [togglePassword, setTogglePassword] = useState(false);
+
+      return (
+         <div className="InputGroup">
+             <label htmlFor="passsword" className="block">
+               {label}
+            </label>
+            <div className="relative">
+               <input
+                  type={togglePassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                  value={value}
+                  className={`errorOutline ${
+                     touched && errors
+                        ? "transition-all ease-in outline-red-400"
+                        : "outline-zinc-800"
+                  } `}
+               />
+               <span
+                  className="absolute left-3 top-1/2 transition-all ease-in -translate-y-1/2 px-2 p-1 dark:bg-zinc-700 dark:active:bg-zinc-600 rounded-md
+                  cursor-pointer bg-zinc-200 active:bg-zinc-300"
+                  onClick={() => setTogglePassword(!togglePassword)}
+               >
+                  {!togglePassword ? <FaRegEye /> : <FaRegEyeSlash />}
+               </span>
+            </div>
+            <div
+               className={`transition-all ease-in h-0 ${
+                  touched && errors ? "h-5" : " "
+               }`}
+            >
+               {touched && errors ? (
+                  <p className="text-sm text-red-400">{errors}</p>
+               ) : null}
+            </div>
+         </div>
+      )
+   }
     
-   if (type == "password") {
+   if (type == "passwordSignUP") {
       const [togglePassword, setTogglePassword] = useState(false);
       const { passwordPercent, passwordColor, passwordStatus } =
          passwordScore(value);

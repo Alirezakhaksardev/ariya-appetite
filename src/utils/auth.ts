@@ -1,7 +1,7 @@
 import zxcvbn from "zxcvbn";
 
 import { hash, compare } from "bcryptjs";
-import { SignUpData } from "@/types/user";
+import { SignInData, SignUpData } from "@/types/user";
 
 async function hashPassword(password: string) {
    const hashedPassword = await hash(password, 12);
@@ -12,7 +12,6 @@ async function verifyPassword(password: string, hashedPassword: string) {
    const isValid = await compare(password, hashedPassword);
    return isValid;
 }
-
 
 type Color =
    | "default"
@@ -68,7 +67,7 @@ const validate = (values: SignUpData) => {
       errors.password = "لطفا یک پسورد برای حساب خود وارد کنید !";
    } else if (values.password.length <= 6) {
       errors.password = "پسورد شما باید حداقل شامل 7 حرف باشد ";
-   }else if(passwordScore(values.password).paswordScore < 2){
+   } else if (passwordScore(values.password).paswordScore < 2) {
       errors.password = "لطفا پسورد قوی تری وارد کنید - حداقل سطح متوسط";
    }
    if (
@@ -80,5 +79,35 @@ const validate = (values: SignUpData) => {
    }
    return errors;
 };
+const validateLogin = (values: SignInData) => {
+   const errors = { emailOrMobile: "", password: "" };
+   if (!values.emailOrMobile) {
+      errors.emailOrMobile = "لطفا فیلد ایمیل را وارد !";
+   } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailOrMobile)
+   ) {
+      if (!/^[0-9]+$/.test(values.emailOrMobile)) {
+         errors.emailOrMobile =
+            "لطفا یک ایمیل  یا شماره موبایل معتبر وارد کنید !";
+      } else if (values.emailOrMobile.length !== 10) {
+         if (values.emailOrMobile.length !== 11) {
+            errors.emailOrMobile =
+               "لطفا یک ایمیل  یا شماره موبایل معتبر وارد کنید !";
+         } else if (values.emailOrMobile.charAt(0) !== "0") {
+            errors.emailOrMobile =
+               "لطفا یک ایمیل  یا شماره موبایل معتبر وارد کنید !";
+         }
+      }
+   }
 
-export { hashPassword, verifyPassword, validate , passwordScore };
+   if (!values.password) {
+      errors.password = "لطفا فیلد پسورد را وارد !";
+   }
+
+
+   if (errors.emailOrMobile.length === 0 && errors.password.length === 0) {
+      return {};
+   }
+   return errors;
+};
+export { hashPassword, verifyPassword, validate, passwordScore , validateLogin };

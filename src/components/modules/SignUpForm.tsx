@@ -1,23 +1,9 @@
-import { SignUpData } from "@/types/user";
-import { FormikErrors, FormikTouched } from "formik";
+import { FormikFormSignUpTpye } from "@/types/user";
 import React from "react";
 import InputGroup from "./InputGroup";
 import ButtonRegisterForm from "./ButtonRegisterForm";
 
-type SignUpForm = {
-   handleChange: {
-      (e: React.ChangeEvent<SignUpData>): void;
-      <T_1 = string | React.ChangeEvent<SignUpData>>(
-         field: T_1
-      ): T_1 extends React.ChangeEvent<SignUpData>
-         ? void
-         : (e: string | React.ChangeEvent<SignUpData>) => void;
-   };
-   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
-   values: SignUpData;
-   errors: FormikErrors<SignUpData>;
-   touched: FormikTouched<SignUpData>;
-};
+
 
 function SignUpForm({
    handleSubmit,
@@ -25,7 +11,7 @@ function SignUpForm({
    values,
    errors,
    touched,
-}: SignUpForm) {
+}: FormikFormSignUpTpye) {
    return (
       <form
          className="w-full flex flex-col mt-10 gap-3"
@@ -52,7 +38,7 @@ function SignUpForm({
          />
 
          <InputGroup
-            type={"password"}
+            type={"passwordSignUP"}
             name="password"
             label="پسورد :"
             value={values.password}
