@@ -1,22 +1,24 @@
-"use client"
-import React, { ReactNode } from 'react'
-import Header from './Header'
-import Footer from './Footer'
+"use client";
+import React, { ReactNode } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import { Toaster } from "react-hot-toast";
 
 type LayoutAppetite = {
-    children : ReactNode
-}
+   children: ReactNode;
+};
 
-function LayoutAppetite({children} : LayoutAppetite) {
-  return (
-    <>
-        <Header />
-        <main>
+function LayoutAppetite({ children }: LayoutAppetite) {
+   return (
+      <>
+         <Header />
+         <main className="container mx-auto">
             {children}
-        </main>
-        <Footer />
-    </>
-  )
+            <Toaster />
+         </main>
+         <Footer />
+      </>
+   );
 }
 
-export default LayoutAppetite
+export default LayoutAppetite;

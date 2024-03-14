@@ -7,16 +7,21 @@ const campanySchema = new Schema({
    campanyProfile: {
       type: String,
    },
-   userName: {
+   phone: {
       type: String,
       required: true,
    },
    fullName: {
       type: String,
+      required: true,
    },
    email: {
       type: String,
       required: true,
+   },
+   confirmEmail: {
+      type: Boolean,
+      default: false,
    },
    password: {
       type: String,

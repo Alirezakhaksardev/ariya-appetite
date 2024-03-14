@@ -9,10 +9,12 @@
 }
 
 @layer compnents {
-   .headerAppetiteContainer , .footerAppetiteContainer {
+   .headerAppetiteContainer,
+   .footerAppetiteContainer {
       @apply w-full min-h-16 bg-slate-100 dark:bg-zinc-800 flex flex-col items-center px-10;
    }
-   .headerAppetiteContainer div.AppetiteContainer , .footerAppetiteContainer div.AppetiteContainer {
+   .headerAppetiteContainer div.AppetiteContainer,
+   .footerAppetiteContainer div.AppetiteContainer {
       @apply container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 py-5 justify-between items-center;
    }
    .links {
@@ -26,13 +28,13 @@
       @apply mx-0;
    }
    .HeaderMobileLinks {
-      @apply transition-all ease-in w-full mx-auto bg-slate-100 dark:bg-zinc-800 inline-block
+      @apply transition-all ease-in w-full mx-auto bg-slate-100 dark:bg-zinc-800 inline-block;
    }
-   .HeaderMobileLinks .links{
-      @apply text-stone-600 dark:text-stone-300
+   .HeaderMobileLinks .links {
+      @apply text-stone-600 dark:text-stone-300;
    }
-   .HeaderMobileLinks .links a{
-      @apply transition-all ease-in bg-zinc-200 dark:bg-zinc-700 active:bg-zinc-300 dark:active:bg-zinc-800 w-full block my-1 py-2 text-center rounded-md
+   .HeaderMobileLinks .links a {
+      @apply transition-all ease-in bg-zinc-200 dark:bg-zinc-700 active:bg-zinc-300 dark:active:bg-zinc-800 w-full block my-1 py-2 text-center rounded-md;
    }
    .iconColor {
       @apply text-zinc-700 dark:text-zinc-200;
@@ -40,7 +42,27 @@
    .iconColorMood {
       @apply text-zinc-500 dark:text-orange-400;
    }
-   .heartIcon{
-    @apply text-red-400
+   .heartIcon {
+      @apply text-red-400;
+   }
+   .AuthForm {
+      
+      @apply flex items-start justify-center lg:mt-20 min-h-[76.5vh];
+   }
+   .AuthForm .AuthFormBox {
+      
+      @apply w-full lg:w-2/4 lg:dark:bg-zinc-800 lg:bg-slate-200 lg:rounded-md px-3 lg:px-10 py-10 flex justify-between flex-col lg:flex-row;
+   }
+}
+
+@layer utilities {
+   .InputGroup {
+      @apply flex flex-col gap-3 w-full;
+   }
+   .InputGroup input {
+      @apply py-2  px-3 w-full rounded-sm dark:bg-zinc-800 bg-zinc-100 ;
+   }
+   .errorOutline{
+      @apply outline outline-[1.5px]
    }
 }
