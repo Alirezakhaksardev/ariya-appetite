@@ -1,7 +1,6 @@
-import { SignUpData } from "@/types/user";
+import React, { useState } from "react";
 import { passwordScore } from "@/utils/auth";
 import { Progress } from "@nextui-org/react";
-import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 interface InputGroup {
@@ -32,13 +31,13 @@ function InputGroup({
    errors,
    autoFocus = false,
 }: InputGroup) {
-
-   if(type == "password"){
-      const [togglePassword, setTogglePassword] = useState(false);
+   const [togglePassword, setTogglePassword] = useState(false);
+   
+   if (type == "password") {
 
       return (
          <div className="InputGroup">
-             <label htmlFor="passsword" className="block">
+            <label htmlFor="passsword" className="block">
                {label}
             </label>
             <div className="relative">
@@ -72,11 +71,10 @@ function InputGroup({
                ) : null}
             </div>
          </div>
-      )
+      );
    }
-    
+
    if (type == "passwordSignUP") {
-      const [togglePassword, setTogglePassword] = useState(false);
       const { passwordPercent, passwordColor, passwordStatus } =
          passwordScore(value);
       return (
