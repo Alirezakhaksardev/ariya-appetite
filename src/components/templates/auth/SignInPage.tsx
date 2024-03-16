@@ -1,22 +1,38 @@
 "use client";
 import BGAuth from "@/components/modules/BGAuth";
 import SignInForm from "@/components/modules/SignInForm";
+import { SignInData } from "@/types/user";
 import { validateLogin } from "@/utils/auth";
 import { useFormik } from "formik";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 function SignInPage() {
+   const router = useRouter();
    const LoginFormik = useFormik({
       initialValues: {
          emailOrMobile: "",
          password: "",
       },
-      validate : validateLogin,
+      validate: validateLogin,
       onSubmit: (values) => {
-         console.log(values);
+         SubmitHandler(values);
       },
    });
-
+   async function SubmitHandler(values: SignInData) {
+      const { emailOrMobile, password } = values;
+      const res = await signIn("credentials", {
+         emailOrMobile,
+         password,
+         redirect: false,
+      });
+      if (res?.error) {
+         console.log(res?.error);
+      } else {
+         router.push("/dashboard", { scroll: false });
+      }
+   }
    const { handleSubmit, handleChange, values, errors, touched } = LoginFormik;
 
    return (

@@ -1,10 +1,10 @@
 import { Schema, model, models } from "mongoose";
 
-const campanySchema = new Schema({
-   campanyName: {
+const companySchema = new Schema({
+   companyName: {
       type: String,
    },
-   campanyProfile: {
+   companyProfile: {
       type: String,
    },
    phone: {
@@ -41,6 +41,6 @@ const campanySchema = new Schema({
    },
 });
 
-const Campany = models.campany || model("Campany", campanySchema);
+const Company = models.company || model("Company", companySchema);
 
-export default Campany;
+export default Company;
