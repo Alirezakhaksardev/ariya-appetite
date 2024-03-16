@@ -11,7 +11,8 @@ function SignUpForm({
    values,
    errors,
    touched,
-}: FormikFormSignUpTpye) {
+   isLoading
+}: FormikFormSignUpTpye & {isLoading : boolean}) {
    return (
       <form
          className="w-full flex flex-col mt-10 gap-3"
@@ -47,7 +48,7 @@ function SignUpForm({
             handleChange={handleChange}
          />
 
-         <ButtonRegisterForm />
+         <ButtonRegisterForm isLoading={isLoading} />
       </form>
    );
 }

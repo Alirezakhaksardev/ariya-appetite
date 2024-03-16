@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-function ButtonRegisterForm() {
+function ButtonRegisterForm({ isLoading }: { isLoading: boolean }) {
    const router = useRouter();
    const goToLoginPage = () => {
       router.push("/signin", { scroll: false });
@@ -17,13 +17,22 @@ function ButtonRegisterForm() {
             aria-label="signin"
             className="w-full font-bold"
             type="submit"
+            isLoading={isLoading}
          >
             ثبت نام
          </Button>
          <div className="flex flex-col gap-3">
-            <p className="text-zinc-500">آیا قبلا ثبت نام کرده اید؟</p>
+            <p className="text-zinc-500">
+               قبلا
+               &nbsp;
+               <span className="dark:text-zinc-400 font-bold text-zinc-600">
+                  ثبت نام
+               </span>
+               &nbsp;
+               کرده بودی ؟
+            </p>
             <div className="w-full">
-               <Link href={'/signin'} scroll={false}>
+               <Link href={"/signin"} scroll={false}>
                   <Button
                      color="default"
                      variant="ghost"

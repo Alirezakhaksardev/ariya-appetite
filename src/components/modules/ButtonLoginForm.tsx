@@ -52,7 +52,7 @@ function ButtonLoginForm() {
                         className="w-full"
                         type="button"
                      >
-                        ورود به صفحه ثبت نام
+                        برو به صفحه ثبت نام
                      </Button>
                   </Link>
                </div>

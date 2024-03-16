@@ -6,8 +6,7 @@ import Company from "@/models/Company";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { p2e } from "@/utils/replaceNumber";
-
-export const handler = NextAuth({
+export const authOptions = {
    session: { strategy: "jwt" },
    providers: [
       CredentialsProvider({
@@ -35,7 +34,10 @@ export const handler = NextAuth({
                const company = await Company.findOne({ phone });
                if (!company)
                   throw new Error("لطفا ابتدا حساب کاربری ایجاد کنید !");
-               const isValid = await verifyPassword(ePassword, company.password);
+               const isValid = await verifyPassword(
+                  ePassword,
+                  company.password
+               );
                if (!isValid)
                   throw new Error("شماره تلفن یا رمز عبور اشتباه است!");
                // Success To Login
@@ -55,6 +57,7 @@ export const handler = NextAuth({
          },
       }),
    ],
-});
+};
+export const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
