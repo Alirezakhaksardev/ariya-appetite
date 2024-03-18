@@ -8,6 +8,7 @@ import { useState } from "react";
 import SuccessAlertRegister from "@/components/modules/SuccessAlertRegister";
 import SignUpForm from "@/components/modules/SignUpForm";
 import InOut from "@/animations/InOut";
+import toast from "react-hot-toast";
 
 function SignupPage() {
    const [pageStep, setPageStep] = useState(0);
@@ -33,9 +34,14 @@ function SignupPage() {
             emailOrMobile: values.email,
             password: values.password,
          });
-      } else {
+      } 
+      else if(res.status === 500){
          setIsLoading(false);
-         return console.log(data.error);
+         toast.error('مشکلی در سمت سرور پیش آمده !')
+      }
+      else {
+         setIsLoading(false);
+         toast.error(data.error);
       }
    }
 
@@ -48,7 +54,7 @@ function SignupPage() {
       });
       if (res?.error) {
          setIsLoading(false);
-         console.log(res.error);
+         toast.error(res.error);
       } else {
          setPageStep(1)
          setIsLoading(false);

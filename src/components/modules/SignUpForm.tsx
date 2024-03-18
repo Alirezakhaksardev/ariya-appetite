@@ -3,8 +3,6 @@ import React from "react";
 import InputGroup from "./InputGroup";
 import ButtonRegisterForm from "./ButtonRegisterForm";
 
-
-
 function SignUpForm({
    handleSubmit,
    handleChange,
