@@ -6,6 +6,7 @@ const companySchema = new Schema({
    },
    companyProfile: {
       type: String,
+      default : '/'
    },
    phone: {
       type: String,

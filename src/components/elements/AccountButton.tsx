@@ -1,31 +1,69 @@
-import { Button } from "@nextui-org/react";
-import React from "react";
-import { PiUserSquareBold } from "react-icons/pi";
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { GoPasskeyFill } from "react-icons/go";
+import { Button, Spinner } from "@nextui-org/react";
+import Opacity from "@/animations/Opacity";
+import AccountDropdown from "./AccountDropdown";
 
 function AccountButton() {
+   const [isLoading, setIsLoading] = useState(true);
+   const [isLogin, setIsLogin] = useState(false);
+   const [user, setUser] = useState({
+      name: "",
+      image: "",
+      email: "",
+   });
+   const clickHandler = () => {
+      redirect("/signin");
+   };
+   const { data: session, status } = useSession();
+   useEffect(() => {
+      if (status == "unauthenticated") {
+         setIsLoading(false);
+         setIsLogin(false);
+      }
+      if (status == "authenticated") {
+         setIsLoading(false);
+         setIsLogin(true);
+         console.log(session.user)
+         setUser({
+            name: session.user?.name ? session.user?.name : "",
+            image: session.user?.image ? session.user?.image : "",
+            email: session.user?.email ? session.user?.email : "",
+         });
+      } else if (status == "loading") setIsLoading(true);
+   }, [status]);
 
-   const router = useRouter()
-   const clickHandler = () =>{
-      router.push('/signup' , {scroll : false});
-   }
+   if (isLoading) return <Spinner size="sm" color="default" />;
 
    return (
-      <Button
-         color="default"
-         variant="flat"
-         radius={"sm"}
-         aria-label="dashboard"
-         className=""
-         onClick={clickHandler}
-      >
-         <span className="flex flex-row gap-3 iconColor items-center">
-            <span>حساب کاربری</span>
-            <span className="text-xl">
-               <PiUserSquareBold />
-            </span>
-         </span>
-      </Button>
+      <Opacity>
+         {isLogin ? (
+            <AccountDropdown
+               name={user.name}
+               image={user.image}
+               email={user.email}
+            />
+         ) : (
+            <Button
+               color="default"
+               variant="flat"
+               radius={"sm"}
+               aria-label="dashboard"
+               className=""
+               isLoading={isLoading}
+               isIconOnly={isLoading}
+            >
+               <span className="flex flex-row gap-3 iconColor items-center">
+                  <span>ورود / ثبت نام</span>
+                  <span className="text-xl">
+                     <GoPasskeyFill />
+                  </span>
+               </span>
+            </Button>
+         )}
+      </Opacity>
    );
 }
 

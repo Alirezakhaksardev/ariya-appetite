@@ -1,8 +1,9 @@
 "use client";
-import { NextUIProvider } from "@nextui-org/react";
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { NextUIProvider, Spinner } from "@nextui-org/react";
+import { SessionProvider, useSession } from "next-auth/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 type Providers = {
    children: ReactNode;
@@ -10,11 +11,13 @@ type Providers = {
 
 function Providers({ children }: Providers) {
    return (
-      <NextUIProvider>
-         <NextThemesProvider attribute="class" defaultTheme="system">
-            {children}
-         </NextThemesProvider>
-      </NextUIProvider>
+      <SessionProvider>
+         <NextUIProvider>
+            <NextThemesProvider attribute="class" defaultTheme="system">
+               {children}
+            </NextThemesProvider>
+         </NextUIProvider>
+      </SessionProvider>
    );
 }
 
