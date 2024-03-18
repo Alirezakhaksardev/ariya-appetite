@@ -5,11 +5,14 @@ import { SignInData } from "@/types/user";
 import { validateLogin } from "@/utils/auth";
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { redirect, useRouter } from "next/navigation";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 function SignInPage() {
-   const router = useRouter();
+
+   const [isLoading, setIsLoading] = useState(false);
+   const router = useRouter()
    const LoginFormik = useFormik({
       initialValues: {
          emailOrMobile: "",
@@ -17,6 +20,7 @@ function SignInPage() {
       },
       validate: validateLogin,
       onSubmit: (values) => {
+         setIsLoading(true)
          SubmitHandler(values);
       },
    });
@@ -28,9 +32,11 @@ function SignInPage() {
          redirect: false,
       });
       if (res?.error) {
-         console.log(res?.error);
+         setIsLoading(false)
+         toast.error(res?.error);
       } else {
-         router.push("/dashboard", { scroll: false });
+         // redirect("/dashboard");
+         router.refresh()
       }
    }
    const { handleSubmit, handleChange, values, errors, touched } = LoginFormik;
@@ -49,6 +55,7 @@ function SignInPage() {
                   values={values}
                   errors={errors}
                   touched={touched}
+                  isLoading={isLoading}
                />
             </div>
          </div>

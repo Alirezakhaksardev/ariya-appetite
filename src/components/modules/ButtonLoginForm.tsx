@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
 
-function ButtonLoginForm() {
+function ButtonLoginForm({ isLoading }: { isLoading: boolean }) {
    return (
       <div className="my-8 mb-3 flex flex-col gap-3">
          <Button
@@ -12,6 +12,7 @@ function ButtonLoginForm() {
             aria-label="signin"
             className="w-full font-bold"
             type="submit"
+            isLoading={isLoading}
          >
             ورود به حساب کاربری
          </Button>
@@ -28,33 +29,38 @@ function ButtonLoginForm() {
             </p>
             <div className="flex flex-row gap-2">
                <div className="w-full">
-                  <Link href={"/"} scroll={false}>
-                     <Button
-                        color="default"
-                        variant="ghost"
-                        radius={"sm"}
-                        aria-label="ToLogin"
-                        className="w-full"
-                        type="button"
-                        isDisabled
-                     >
+                  <Button
+                     color="default"
+                     variant="ghost"
+                     radius={"sm"}
+                     aria-label="ToLogin"
+                     className="w-full flex p-0 py-0 justify-center items-center"
+                     type="button"
+                     isDisabled={isLoading}
+                  >
+                     <Link href={"/get-new-password"} scroll={false} className="flex justify-center items-center w-full h-full">
                         بازیابی پسورد (بزودی)
-                     </Button>
-                  </Link>
+                     </Link>
+                  </Button>
                </div>
                <div className="w-full">
-                  <Link href={"/signup"} scroll={false}>
-                     <Button
-                        color="default"
-                        variant="ghost"
-                        radius={"sm"}
-                        aria-label="ToLogin"
-                        className="w-full"
-                        type="button"
+                  <Button
+                     color="default"
+                     variant="ghost"
+                     radius={"sm"}
+                     aria-label="ToLogin"
+                     className="w-full flex p-0 py-0 justify-center items-center"
+                     type="button"
+                     isDisabled={isLoading}
+                  >
+                     <Link
+                        href={"/signup"}
+                        scroll={false}
+                        className="flex justify-center items-center w-full h-full"
                      >
                         برو به صفحه ثبت نام
-                     </Button>
-                  </Link>
+                     </Link>
+                  </Button>
                </div>
             </div>
          </div>

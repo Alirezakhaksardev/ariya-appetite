@@ -9,7 +9,8 @@ function SignInForm({
    touched,
    errors,
    handleChange,
-}: FormikFormSignInTpye) {
+   isLoading
+}: FormikFormSignInTpye & {isLoading : boolean}) {
    return (
       <form
          className="w-full flex flex-col mt-10 gap-3"
@@ -35,7 +36,7 @@ function SignInForm({
             errors={errors.password}
             handleChange={handleChange}
          />
-         <ButtonLoginForm />
+         <ButtonLoginForm isLoading={isLoading} />
       </form>
    );
 }
