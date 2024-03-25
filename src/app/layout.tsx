@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="fa" dir="rtl" suppressHydrationWarning>
-         <body className={`${KalamehWeb.className}`}>
+         <body className={`${KalamehWeb.className} scrollable`}>
             <Providers>
                <LayoutAppetite>
                   {children}

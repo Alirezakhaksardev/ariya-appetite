@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
             } catch (err) {
                throw new Error("مشکلی در سرور رخ داده است !");
             }
-            // Check vlid Data
+            // Check valid Data
             if (!emailOrMobile || !password)
                throw new Error("لطفا اطلاعات معتبر وارد کنید !");
 

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 import { Spinner } from "@nextui-org/react";
+import DashboardLayout from "@/layouts/dashboard/DashboardLayout";
 
 export default async function RootDashBoardLayout({
    children,
@@ -11,5 +12,5 @@ export default async function RootDashBoardLayout({
 }>) {
    const session = await getServerSession(authOptions);
    if (!session) return redirect("/signin");
-   return <div>{children}</div>;
+   return <DashboardLayout>{children}</DashboardLayout>;
 }

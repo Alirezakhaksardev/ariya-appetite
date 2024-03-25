@@ -19,7 +19,7 @@ function Header() {
             </div>
             <div className="flex flex-row items-center gap-3">
                <BarsButton menuToggle={menuToggle} setMenuToggle ={setMenuToggle} />
-               <AlertButton />
+               {/* <AlertButton /> */}
                <SwitchMood />
                <AccountButton/>
             </div>

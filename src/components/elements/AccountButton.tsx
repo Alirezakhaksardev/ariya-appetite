@@ -5,6 +5,7 @@ import { GoPasskeyFill } from "react-icons/go";
 import { Button, Spinner } from "@nextui-org/react";
 import Opacity from "@/animations/Opacity";
 import AccountDropdown from "./AccountDropdown";
+import Link from "next/link";
 
 function AccountButton() {
    const [isLoading, setIsLoading] = useState(true);
@@ -14,9 +15,6 @@ function AccountButton() {
       image: "",
       email: "",
    });
-   const clickHandler = () => {
-      redirect("/signin");
-   };
    const { data: session, status } = useSession();
    useEffect(() => {
       if (status == "unauthenticated") {
@@ -26,7 +24,7 @@ function AccountButton() {
       if (status == "authenticated") {
          setIsLoading(false);
          setIsLogin(true);
-         console.log(session.user)
+         console.log(session.user);
          setUser({
             name: session.user?.name ? session.user?.name : "",
             image: session.user?.image ? session.user?.image : "",
@@ -51,16 +49,18 @@ function AccountButton() {
                variant="flat"
                radius={"sm"}
                aria-label="dashboard"
-               className=""
+               className="flex p-0 py-0 justify-center items-center"
                isLoading={isLoading}
                isIconOnly={isLoading}
             >
-               <span className="flex flex-row gap-3 iconColor items-center">
-                  <span>ورود / ثبت نام</span>
-                  <span className="text-xl">
-                     <GoPasskeyFill />
+               <Link href={'/signin'} scroll={false} className="flex justify-center px-5 items-center w-full h-full">
+                  <span className="flex flex-row gap-3 iconColor items-center">
+                     <span>ورود / ثبت نام</span>
+                     <span className="text-xl">
+                        <GoPasskeyFill />
+                     </span>
                   </span>
-               </span>
+               </Link>
             </Button>
          )}
       </Opacity>

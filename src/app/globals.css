@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-   /* .text-balance {
-    text-wrap: balance;
-  } */
+* {
+   scroll-behavior: smooth;
 }
 
 @layer compnents {
@@ -18,6 +16,13 @@
       @apply container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 py-5 justify-between items-center;
    }
 
+   .HeaderDashboard{
+      @apply container mx-auto flex flex-col justify-center items-center gap-5 sm:flex-row sm:justify-between py-5
+   }
+
+   .HeaderDashboard p.day{
+      @apply text-base font-normal flex-row gap-3 items-center
+   }
    .links {
       @apply transition-all ease-in hover:text-stone-600 dark:hover:text-stone-300 text-stone-400;
    }
@@ -47,23 +52,48 @@
       @apply text-red-400;
    }
    .AuthForm {
-      
       @apply flex items-start justify-center lg:mt-20 min-h-[76.5vh];
    }
    .AuthForm .AuthFormBox {
-      
       @apply w-full lg:w-2/4 lg:dark:bg-zinc-800 lg:bg-slate-200 lg:rounded-md px-3 lg:px-10 py-10 flex justify-between flex-col lg:flex-row;
+   }
+   .TextWelcome{
+      @apply flex items-center gap-5 
+   }
+   .TextWelcome p {
+      @apply font-bold text-2xl
+   }
+   .DateBox{
+      @apply flex flex-row gap-5
+   }
+   .DateBox p{
+      @apply flex flex-row gap-2 items-center
+   }
+   .DateBox p.p_clock{
+      @apply w-[140px]
    }
 }
 
 @layer utilities {
+   body::-webkit-scrollbar {
+      @apply w-[0.3em] bg-stone-300 dark:bg-stone-900;
+   }
+
+   body::-webkit-scrollbar-track {
+      @apply rounded-none;
+   }
+
+   body::-webkit-scrollbar-thumb {
+      @apply bg-stone-900 dark:bg-stone-600 rounded-none opacity-50;
+   }
    .InputGroup {
       @apply flex flex-col gap-3 w-full;
    }
    .InputGroup input {
-      @apply py-2  px-3 w-full rounded-sm dark:bg-zinc-800 bg-zinc-100 ;
+      @apply py-2  px-3 w-full rounded-sm dark:bg-zinc-800 bg-zinc-100;
    }
-   .errorOutline{
-      @apply outline outline-[1.5px]
+   .errorOutline {
+      @apply outline outline-[1.5px];
    }
+   
 }

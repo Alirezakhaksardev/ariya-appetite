@@ -42,6 +42,6 @@ const companySchema = new Schema({
    },
 });
 
-const Company = models.company || model("Company", companySchema);
+const Company = models.Company || model("Company", companySchema);
 
 export default Company;
