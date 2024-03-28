@@ -18,7 +18,7 @@ function AlertButton() {
             variant="faded"
             radius={"sm"}
             aria-label="Alert"
-            className="border-none"
+            className="border-none bg-transparent"
             size="md"
          >
             <span className="text-xl iconColor">

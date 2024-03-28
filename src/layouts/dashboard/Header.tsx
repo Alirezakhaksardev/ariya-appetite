@@ -1,5 +1,6 @@
 "use client";
 import Opacity from "@/animations/Opacity";
+import AlertButton from "@/components/elements/AlertButton";
 import { useEffect, useState } from "react";
 import { FaRegClock } from "react-icons/fa";
 import { GiNightSky } from "react-icons/gi";
@@ -75,6 +76,7 @@ function header() {
                </span>
                ساعت : {date.toLocaleTimeString("fa-IR")}
             </p>
+            <AlertButton />
          </div>
       </div>
    );
